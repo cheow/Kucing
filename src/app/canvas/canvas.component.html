@@ -1,0 +1,23 @@
+<section id="header" class="mb-2"></section>
+<section id="canvas">
+  <div class="container">
+      <div *ngFor="let block of data">
+        <div [innerHtml]="render(block)" ></div>
+      </div>
+    <a routerLink="/add">
+      <button class="btn btn-block btn-light">
+        <i class="fa fa-plus"></i> Add Block
+      </button>
+    </a>
+  </div>
+</section>
+<section id="footer" class="mt-2">
+  <div class="footer container">
+    <button class="btn btn-block btn-info">
+      <i class="fa fa-save"></i> Save
+    </button>
+    <button class="btn btn-block btn-success">
+      <i class="fa fa-code"></i> Export
+    </button>
+  </div>
+</section>

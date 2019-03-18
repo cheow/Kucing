@@ -1,0 +1,50 @@
+<section id="alert" class="mt-2">
+  <div class="container">
+    <div>
+      <label for="text-input">Text:</label>
+      <input
+        id="text-input"
+        name="text"
+        class="form-control mb-1"
+        [(ngModel)]="options.text"
+      />
+    </div>
+    <div>
+      <label for="style-input">Style:</label>
+      <select id="style-input" name="style" class="form-control mb-2" [(ngModel)]="options.style">
+        <option value="">
+          - select style -
+        </option>
+        <option value="info">
+          info
+        </option>
+        <option value="success">
+          success
+        </option>
+        <option value="warning">
+          warning
+        </option>
+        <option value="danger">
+          danger
+        </option>
+      </select>
+    </div>
+    <div class="preview">
+        <div class="alert alert-{{ options.style }}">
+            {{ options.text }}
+          </div>
+    </div>
+  </div>
+</section>
+<section id="block-footer">
+    <div class="container">
+        <button class="btn btn-block btn-success mb-1" (click)="save()">
+          <i class="fa fa-save"></i> Save
+        </button>
+        <a routerLink="/">
+        <button class="btn btn-block btn-light">
+          <i class="fa fa-stop-circle"></i> Cancel
+        </button>
+        </a>
+      </div>
+</section>

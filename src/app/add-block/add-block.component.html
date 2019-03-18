@@ -1,0 +1,11 @@
+<section id="add-block">
+  <div class="container">
+    <ul class="list-of-blocks">
+      <li *ngFor="let block of listOfBlocks">
+        <a routerLink="/block/{{ block.id }}">
+          {{ block.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
