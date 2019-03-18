@@ -1,0 +1,11 @@
+.block-actions, 
+.block-actions a {
+    font-size: 0.8rem;
+}
+
+.block-actions {
+    display: inline-block;
+    border: dashed 1px #888888;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

@@ -5,6 +5,5 @@ export interface BlockInterface {
     name: string;
     options: object;
 
-    render(): SafeHtml;
     validation(): boolean;
 }

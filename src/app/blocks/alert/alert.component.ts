@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { BlockInterface } from "../../interfaces/block-interface";
 import { SafeHtml } from "@angular/platform-browser";
 import { CanvasDataService } from "../../services/canvas-data.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { BlockDataInterface } from "../../interfaces/block-data-interface";
 
 @Component({
   selector: "app-alert",
@@ -12,6 +13,8 @@ import { Router } from "@angular/router";
 export class AlertComponent implements OnInit, BlockInterface {
   id: string = "alert";
   name: string = "Alert";
+  blockDataId: string;
+  blockData: BlockDataInterface;
 
   options: object = {
     text: "Sample text",
@@ -20,16 +23,24 @@ export class AlertComponent implements OnInit, BlockInterface {
 
   constructor(
     private canvasDataService: CanvasDataService,
-    private router: Router
-  ) {}
-
-  ngOnInit() {}
-
-  render(): SafeHtml {
-    return "test";
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.blockDataId = this.route.snapshot.paramMap.get("id");
   }
 
-  loadData(): void {}
+  ngOnInit() {
+    this.loadData();
+  }
+
+  loadData(): void {
+    if (this.blockDataId) {
+      this.blockData = this.canvasDataService.data.find(
+        blockData => blockData.id == this.blockDataId
+      );
+      this.options = this.blockData.data;
+    }
+  }
 
   validation(): boolean {
     return true;
@@ -40,6 +51,18 @@ export class AlertComponent implements OnInit, BlockInterface {
       return;
     }
 
+    if (this.blockDataId) {
+      this.replace();
+      this.router.navigate(["/"]);
+      return;
+    }
+
+    this.add();
+    this.router.navigate(["/"]);
+    return;
+  }
+
+  add():void {
     this.canvasDataService.add({
       id: Math.random()
         .toString(36)
@@ -47,9 +70,17 @@ export class AlertComponent implements OnInit, BlockInterface {
       blockId: this.id,
       data: this.options
     });
-
-    this.router.navigate(["/"]);
   }
+
+  replace(): void {
+    this.canvasDataService.replace({
+      id: this.blockDataId,
+      blockId: this.id,
+      data: this.options
+    });
+  }
+
+
   delete(): void {}
   cancel(): void {}
 }

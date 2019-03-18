@@ -16,7 +16,11 @@ const routes: Routes = [
   {
     path: "block/alert", 
     component: AlertComponent
-  }
+  }, 
+  {
+    path: "block/alert/:id", 
+    component: AlertComponent
+  }, 
 ];
 
 @NgModule({

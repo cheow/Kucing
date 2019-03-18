@@ -1,23 +1,43 @@
-<section id="header" class="mb-2"></section>
-<section id="canvas">
-  <div class="container">
+<div class="d-flex flex-column h-100">
+  <section id="canvas">
+    <div class="container">
       <div *ngFor="let block of data">
-        <div [innerHtml]="render(block)" ></div>
+        <div class="block">
+          <div class="text-right">
+              <div class="block-actions">
+                  <a class="btn btn-link text-secondary" (click)="up(block)">
+                      <i class="fa fa-arrow-up"></i> Up 
+                  </a>
+                  <a class="btn btn-link text-secondary" (click)="down(block)">
+                      <i class="fa fa-arrow-down"></i> Down 
+                  </a>
+                  <a class="btn btn-link text-secondary" (click)="edit(block)">
+                      <i class="fa fa-edit"></i> Edit 
+                  </a>
+                  <a class="btn btn-link text-secondary" (click)="delete(block)">
+                    <i class="fa fa-trash"></i> Delete
+                </a>
+              </div>
+          </div>
+            <div [innerHtml]="render(block)"></div>
+        </div>
+        
       </div>
-    <a routerLink="/add">
-      <button class="btn btn-block btn-light">
-        <i class="fa fa-plus"></i> Add Block
+      <a routerLink="/add">
+        <button class="btn btn-block btn-light">
+          <i class="fa fa-plus"></i> Add Block
+        </button>
+      </a>
+    </div>
+  </section>
+  <section id="footer" class="footer p-2 bg-secondary mb-10">
+    <div class="footer container text-right">
+      <button class="btn btn-warning ml-2 btn-sm">
+        <i class="fa fa-save"></i> Save
       </button>
-    </a>
-  </div>
-</section>
-<section id="footer" class="mt-2">
-  <div class="footer container">
-    <button class="btn btn-block btn-info">
-      <i class="fa fa-save"></i> Save
-    </button>
-    <button class="btn btn-block btn-success">
-      <i class="fa fa-code"></i> Export
-    </button>
-  </div>
-</section>
+      <button class="btn btn-success ml-2 btn-sm">
+        <i class="fa fa-code"></i> Export
+      </button>
+    </div>
+  </section>
+</div>
